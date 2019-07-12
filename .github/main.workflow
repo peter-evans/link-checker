@@ -1,6 +1,6 @@
 workflow "Check markdown links" {
   resolves = ["Create Issue From File"]
-  on = "push"
+  on = "schedule(0 0 1 1/6 *)"
 }
 
 action "Link Checker" {
