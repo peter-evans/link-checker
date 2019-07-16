@@ -3,7 +3,7 @@
 
 A GitHub action for link checking repository Markdown and HTML files.
 
-When pairing this action with [Create Issue From File](https://github.com/peter-evans/create-issue-from-file), issues will be created when Link Checker finds connectivity problems with links.
+When used in conjunction with [Create Issue From File](https://github.com/peter-evans/create-issue-from-file), issues will be created when Link Checker finds connectivity problems with links.
 
 ## Usage
 
@@ -30,7 +30,7 @@ The default path is `link-checker/out.md`. The path and filename may be overridd
 
 #### Receiving issues containing the error report
 
-Below is an example of pairing this action with [Create Issue From File](https://github.com/peter-evans/create-issue-from-file). The workflow executes on a schedule every month. Issues will be created when Link Checker finds connectivity problems with links.
+Below is an example of using this action in conjunction with [Create Issue From File](https://github.com/peter-evans/create-issue-from-file). The workflow executes on a schedule every month. Issues will be created when Link Checker finds connectivity problems with links.
 
 ```hcl
 workflow "Check markdown links" {
