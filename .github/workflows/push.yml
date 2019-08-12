@@ -1,0 +1,22 @@
+name: Check markdown links
+on:
+  push:
+    branches:
+    - test
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Link Checker
+      uses: ./
+      with:
+        args: -v -r *
+    - name: Create Issue From File
+      uses: peter-evans/create-issue-from-file@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ISSUE_TITLE: Link Checker Report
+        ISSUE_CONTENT_FILEPATH: ./link-checker/out.md
+        ISSUE_LABELS: report, automated issue
+        ISSUE_ASSIGNEES: peter-evans

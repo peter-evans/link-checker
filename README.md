@@ -11,11 +11,11 @@ Link Checker uses [Liche](https://github.com/raviqqe/liche).
 Liche arguments should be passed to the action via the `args` parameter.
 This example will check all markdown and HTML files in your repository.
 
-```hcl
-action "Link Checker" {
-  uses = "peter-evans/link-checker@v1.0.0"
-  args = "-v -r *"
-}
+```yml
+    - name: Link Checker
+      uses: peter-evans/link-checker@v1.0.0
+      with:
+        args: -v -r *
 ```
 
 See [Liche's documentation](https://github.com/raviqqe/liche) for further argument details.
@@ -32,27 +32,27 @@ The default path is `link-checker/out.md`. The path and filename may be overridd
 
 Below is an example of using this action in conjunction with [Create Issue From File](https://github.com/peter-evans/create-issue-from-file). The workflow executes on a schedule every month. Issues will be created when Link Checker finds connectivity problems with links.
 
-```hcl
-workflow "Check markdown links" {
-  on = "schedule(0 0 1 * *)"
-  resolves = ["Create Issue From File"]
-}
-
-action "Link Checker" {
-  uses = "peter-evans/link-checker@v1.0.0"
-  args = "-v -r *"
-}
-
-action "Create Issue From File" {
-  needs = "Link Checker"
-  uses = "peter-evans/create-issue-from-file@v1.0.1"
-  secrets = ["GITHUB_TOKEN"]
-  env = {
-    ISSUE_TITLE = "Link Checker Report"
-    ISSUE_CONTENT_FILEPATH = "./link-checker/out.md"
-    ISSUE_LABELS = "report, automated issue"
-  }
-}
+```yml
+on:
+  schedules:
+  - cron: 0 0 1 * *
+name: Check markdown links
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Link Checker
+      uses: peter-evans/link-checker@v1.0.0
+      with:
+        args: -v -r *
+    - name: Create Issue From File
+      uses: peter-evans/create-issue-from-file@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ISSUE_TITLE: Link Checker Report
+        ISSUE_CONTENT_FILEPATH: ./link-checker/out.md
+        ISSUE_LABELS: report, automated issue
 ```
 
 ## Issue sample
