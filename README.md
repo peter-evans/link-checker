@@ -13,7 +13,7 @@ This example will check all markdown and HTML files in your repository.
 
 ```yml
     - name: Link Checker
-      uses: peter-evans/link-checker@v1.0.0
+      uses: peter-evans/link-checker@v1
       with:
         args: -v -r *
 ```
@@ -43,11 +43,11 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Link Checker
-      uses: peter-evans/link-checker@v1.0.0
+      uses: peter-evans/link-checker@v1
       with:
         args: -v -r *
     - name: Create Issue From File
-      uses: peter-evans/create-issue-from-file@v1.0.1
+      uses: peter-evans/create-issue-from-file@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ISSUE_TITLE: Link Checker Report

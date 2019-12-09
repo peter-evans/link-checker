@@ -1,0 +1,8 @@
+name: 'Link Checker'
+description: 'An action for link checking repository Markdown and HTML files'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'external-link'  
+  color: 'purple'
