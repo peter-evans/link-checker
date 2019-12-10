@@ -6,3 +6,6 @@ runs:
 branding:
   icon: 'external-link'  
   color: 'purple'
+outputs:
+  result: 
+    description: The output of the link checker
