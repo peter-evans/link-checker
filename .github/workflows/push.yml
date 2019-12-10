@@ -9,9 +9,12 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Link Checker
+      id: link_checker
       uses: ./
       with:
-        args: -v -r *
+        args: -v -r *	
+    - name: Check output
+      run: echo ${{ steps.link_checker.outputs.result }}
     - name: Create Issue From File
       uses: peter-evans/create-issue-from-file@v1
       env:
