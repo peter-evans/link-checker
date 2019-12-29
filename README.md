@@ -35,7 +35,7 @@ Below is an example of using this action in conjunction with [Create Issue From 
 ```yml
 on:
   schedule:
-  - cron: 0 0 1 * *
+  - cron: '0 0 1 * *'
 name: Check markdown links
 jobs:
   linkChecker:
