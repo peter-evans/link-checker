@@ -41,7 +41,7 @@ jobs:
   linkChecker:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Link Checker
       uses: peter-evans/link-checker@v1
       with:
