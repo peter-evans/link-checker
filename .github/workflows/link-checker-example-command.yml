@@ -1,0 +1,28 @@
+name: Link Checker Example Command
+on:
+  repository_dispatch:
+    types: [link-checker-example-command]
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Link Checker
+        uses: ./
+        with:
+          args: -v -r *
+      - name: Create Issue From File
+        uses: peter-evans/create-issue-from-file@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Link Checker Report
+          content-filepath: ./link-checker/out.md
+          labels: report, automated issue
+          assignees: peter-evans
+      - name: Add reaction
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          reaction-type: hooray
