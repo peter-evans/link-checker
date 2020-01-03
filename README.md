@@ -41,18 +41,18 @@ jobs:
   linkChecker:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Link Checker
-      uses: peter-evans/link-checker@v1
-      with:
-        args: -v -r *
-    - name: Create Issue From File
-      uses: peter-evans/create-issue-from-file@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ISSUE_TITLE: Link Checker Report
-        ISSUE_CONTENT_FILEPATH: ./link-checker/out.md
-        ISSUE_LABELS: report, automated issue
+      - uses: actions/checkout@v2
+      - name: Link Checker
+        uses: peter-evans/link-checker@v1
+        with:
+          args: -v -r *
+      - name: Create Issue From File
+        uses: peter-evans/create-issue-from-file@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Link Checker Report
+          content-filepath: ./link-checker/out.md
+          labels: report, automated issue
 ```
 
 ## Issue sample
