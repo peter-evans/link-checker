@@ -24,5 +24,5 @@ fi
 # Output to console
 cat /tmp/link-checker/out
 
-# Propagate liche exit code
+# Pass Liche exit code to next step
 echo ::set-output name=exit_code::$exit_code
