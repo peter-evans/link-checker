@@ -3,7 +3,7 @@ on:
   repository_dispatch:
     types: [link-checker-example-command]
 jobs:
-  createPullRequest:
+  linkChecker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
