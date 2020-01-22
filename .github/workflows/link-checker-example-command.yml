@@ -8,11 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Link Checker
+        id: lc
         uses: ./
         with:
           args: -v -r *
       - name: Create Issue From File
-        id: lc
         uses: peter-evans/create-issue-from-file@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
