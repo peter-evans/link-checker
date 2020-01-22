@@ -55,10 +55,30 @@ jobs:
           labels: report, automated issue
 ```
 
-## Issue sample
+#### Issue sample
 
 [This link](https://aoushaoueshosuhoshuoeu.com) is intentionally non-existent.
 The workflow in this repository generated [this sample issue](https://github.com/peter-evans/link-checker/issues/1).
+
+#### Creating a failing check for link errors
+
+To create a failing check when there are link errors you can use the `exit_code` output from the action as follows.
+
+```yml
+on: push
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Link Checker
+      id: lc
+      uses: peter-evans/link-checker@v1
+      with:
+        args: -v -r *
+    - name: Fail if there were link errors
+       run: exit ${{ steps.lc.outputs.exit_code }}
+```
 
 ## License
 
