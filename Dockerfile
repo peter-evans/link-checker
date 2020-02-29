@@ -1,4 +1,4 @@
-FROM peterevans/liche:1.1.0
+FROM peterevans/liche:1.1.1
 
 LABEL maintainer="Peter Evans <mail@peterevans.dev>"
 LABEL repository="https://github.com/peter-evans/link-checker"
