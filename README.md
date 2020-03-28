@@ -77,7 +77,7 @@ jobs:
       with:
         args: -v -r *
     - name: Fail if there were link errors
-       run: exit ${{ steps.lc.outputs.exit_code }}
+      run: exit ${{ steps.lc.outputs.exit_code }}
 ```
 
 ## License
