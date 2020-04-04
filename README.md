@@ -49,7 +49,6 @@ jobs:
       - name: Create Issue From File
         uses: peter-evans/create-issue-from-file@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           title: Link Checker Report
           content-filepath: ./link-checker/out.md
           labels: report, automated issue
