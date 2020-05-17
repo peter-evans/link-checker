@@ -7,9 +7,15 @@ When used in conjunction with [Create Issue From File](https://github.com/peter-
 
 ## Usage
 
+Using with the default settings will check all markdown and HTML files in your repository.
+
+```yml
+    - name: Link Checker
+      uses: peter-evans/link-checker@v1
+```
+
 Link Checker uses [Liche](https://github.com/raviqqe/liche).
-Liche arguments should be passed to the action via the `args` parameter.
-This example will check all markdown and HTML files in your repository.
+Liche arguments can be passed to the action via the `args` parameter. If not set, the default `-v -r *` will be used.
 
 ```yml
     - name: Link Checker
@@ -44,8 +50,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Link Checker
         uses: peter-evans/link-checker@v1
-        with:
-          args: -v -r *
       - name: Create Issue From File
         uses: peter-evans/create-issue-from-file@v2
         with:
@@ -73,8 +77,6 @@ jobs:
     - name: Link Checker
       id: lc
       uses: peter-evans/link-checker@v1
-      with:
-        args: -v -r *
     - name: Fail if there were link errors
       run: exit ${{ steps.lc.outputs.exit_code }}
 ```
